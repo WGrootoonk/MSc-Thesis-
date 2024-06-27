@@ -3,9 +3,11 @@ Scripts for MSc thesis "Relations between temporal resilience indicators and tre
 Utrecht University (01/07/2024)
 
 ##DATA SOURCES###
+
 All of the used data is provided here: and can be used with proper referencing 
 
 ##HOW TO USE THE SCRIPTS###
+
 Three main R scripts were used for this thesis, and one script for Google Earth Engine.
 The operation of these scripts should be clear from comments in the scripts themselves. 
 Feel free to use these scripts for further research (with proper referencing) 
