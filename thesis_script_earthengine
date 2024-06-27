@@ -1,0 +1,94 @@
+//INPUTS (add these yourself) 
+Study_Area: A shapefile of the Aït Benhaddou catchment
+Landsat5: https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LT05_C02_T1_L2
+CHRIP: https://developers.google.com/earth-engine/datasets/catalog/UCSB-CHG_CHIRPS_PENTAD 
+
+//SCRIPTS
+var roi = ee.Geometry.Rectangle([-6.96, 31.03, -7.40, 31.38]);
+
+//Selecting rainfall data 
+
+var datasetraw = ee.ImageCollection("UCSB-CHG/CHIRPS/PENTAD")
+    .filterDate('1997-05-02', '1999-01-01')
+    .filterBounds(Study_Area)
+function clipping(image) {
+  return image.clip(Study_Area); }
+var rainfall = datasetraw.map(clipping); 
+
+//Selecting landsat 5
+var datasetraw = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2')
+    .filterDate('1984-01-01', '1998-12-31')
+    .filterBounds(Study_Area)
+var dataset = datasetraw.filter(ee.Filter.lte('CLOUD_COVER', 100));
+
+//masking out any leftover clouds and saturation, clipping to study area
+function qualitymasks(image) {
+var qaMask = image.select('QA_PIXEL').bitwiseAnd(parseInt('11111', 2)).eq(0); 
+var saturationMask = image.select('QA_RADSAT').eq(0); 
+return image.updateMask(qaMask)
+            .updateMask(saturationMask)
+            .clip(Study_Area); 
+} 
+dataset = dataset.map(qualitymasks);
+
+// Computing NSI and creating seperate collection
+function ComputeNSI (image){
+var NSI = image.expression(
+                      '(SWIR1-SWIR2)/(SWIR1+NIR)', {
+                        'SWIR1': image.select('SR_B5'),
+                        'SWIR2': image.select('SR_B7'),
+                        'NIR': image.select('SR_B4')
+                      })
+                      .rename('NSI');
+return image.addBands(NSI) 
+}
+dataset = dataset.map(ComputeNSI);
+var L5NSI = dataset.select('NSI');
+var L5NSImean = dataset.select('NSI').mean();
+
+
+//visualizing 
+
+var NSIviz = {
+  bands: ['NSI'],
+  min: 0.0,
+  max: 0.2,
+  palette: ['green', 'white'],
+}; 
+
+var Percipviz = { 
+  bands: ["precipitation"],
+  min: 0,
+  max: 25,
+  palette:["white", "blue"]
+};
+
+Map.addLayer(L5NSImean, NSIviz, 'NSI_mean');
+Map.addLayer(rainfall, Percipviz, "precipitation")
+
+
+//EXPORTING
+// var image = L5NSImean.select(['NSI']); 
+// var ref = ee.Image('LANDSAT/LT05/C02/T1_L2/LT05_201038_19970518');
+// var projection = ref.select('SR_B1').projection().getInfo();
+
+// Export.image.toDrive({ 
+// image: L5NSImean,
+// description: "NSI Salinity Map Ait Benhaddou",
+// crs: projection.crs,
+// crsTransform: projection.transform,
+// region: Study_Area
+// })
+  
+
+
+  // var batch = require('users/fitoprincipe/geetools:batch');
+  // batch.Download.ImageCollection.toDrive(rainfall, 'Percipdata', 
+  //               {scale: 5000,
+  //               region: (roi.bounds().getInfo()),
+  //               type: 'float'})
+  
+  
+ 
+
+ 
