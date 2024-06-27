@@ -15,6 +15,7 @@ Feel free to use these scripts for further research (with proper referencing)
 - A clean and prepared temporal vegetation raster brick (i.e. a stack of rasters forming a timeseries for each pixel). I use one produduced by Vermeer, A. L. (2021). Ecological stability in the face of climatic disturbances: a case study of a dryland ecosystem in the Moroccan High Atlas Mountains (Master's thesis). Any environmental dataset of sufficient length will work however.
 - A catchment (study area) outline , channels mask, and plantation mask produced by Vermeer (2021). Optional, will work without.
 - A CHIRP dataset of precipitation for the area created using thesis_script_earthengine. Optional, will work without.
+
 #Output:
 - Resillience indicator rasters with per-pixel results for Kendall's tau corresponding with the chosen indicator and parameters. By defaults, these are standard deviation (variance) and lag-one autocorrelation.
 - A raster with Kendall's tau for vegetation trend corresponding with vegetation trends in the same time period
@@ -24,6 +25,7 @@ Feel free to use these scripts for further research (with proper referencing)
 #Input: 
 - A clean and prepared temporal vegetation raster brick (i.e. a stack of rasters forming a timeseries for each pixel).
 - A catchment outline, channels mask, and plantation mask produced by Vermeer (2021). Optional, will work without.
+
 #Output:
 - Various figures related to data quality
 - Correction rasters for chosen indicators and parameters that can be used to correction for the effect of missing values on the output of the main function.
@@ -35,6 +37,7 @@ Feel free to use these scripts for further research (with proper referencing)
 - A Breakpoint typology raster created by Vermeer (2021). This is specific to this research, can be skipped.
 - A NIR-SWIR salinity index raster for the study area produced using thesis_script_earthengine This is specific to this research, can be skipped.
 - Data for slope, elevation, and the cathcment outline from Vermeer (2021). This is specific to this research, can be skipped.
+
 #Output:
 - Various figures
   
@@ -43,6 +46,7 @@ Feel free to use these scripts for further research (with proper referencing)
 - Shapefile for the study area
 - Landsat 5 data from EE
 - CHIRPS data from EE
+
 #Output:
 - A NIR-SWIR salinity index raster for the study area
 - A series of CHIRPS images for the study area. Honestly, this is not a good way to import these, would be way better to use some dedicated export function.
