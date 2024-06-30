@@ -4,7 +4,7 @@ Utrecht University (01/07/2024)
 
 ##DATA SOURCES###
 
-All of the used data is provided here: -Link awaiting permission from co authors- 
+All of the used data is provided here: -Link awaiting permission from authors- 
 and can be used with proper referencing 
 
 ##HOW TO USE THE SCRIPTS###
