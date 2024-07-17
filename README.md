@@ -1,10 +1,11 @@
 # MSc-Thesis-
 Scripts for MSc thesis "Relations between temporal resilience indicators and trend breakpoints in a dryland high-mountain catchment" by Willem Grootoonk
+
 Utrecht University (01/07/2024)
 
 ##DATA SOURCES###
 
-All of the used data is provided here: -Link awaiting permission from authors- 
+All of the used data is provided here: https://zenodo.org/records/12759684?token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImIxOTVhNDZmLTM5ZTQtNDZiMi04OTYzLTBkYTAwNDFmYWE1OCIsImRhdGEiOnt9LCJyYW5kb20iOiIwZDJiNzc3ZTk5ZjlhMWRmMjU5ZGQ5MTk4OWQxNzE2ZiJ9.Dr60es82tjUCwx2SKwZ7dYLKRgk_6Q_ayePh9kEdl-V-Kbc1EySzP_21lNAfMkZLVQHvoEVVXJH50y1YsZrcfQ 
 and can be used with proper referencing 
 
 ##HOW TO USE THE SCRIPTS###
